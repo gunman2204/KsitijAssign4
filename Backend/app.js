@@ -15,8 +15,8 @@ app.use(cors({
 }));
 
 app.use(express.json());
-app.use('/api/users',authRoutes);
-app.use('/api/locations', require('./routes/locationRoutes'));
+app.use('/',authRoutes);
+app.use('/', require('./routes/locationRoutes'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
