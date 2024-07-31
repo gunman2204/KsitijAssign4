@@ -12,10 +12,16 @@ dotenv.config();
 
 exports.getLocations = async (req, res) => {
   try {
-    const locations = await Location.find();
+    const locations = await Location.find({});
     res.json(locations);
+    // res.send('Locations endpoint');
+
+    console.log('success loading locations at backend');
+
   } catch (err) {
     res.status(500).json({ message: err.message });
+    console.log('failed loading locations at backend');
+
   }
 };
 
@@ -44,3 +50,4 @@ exports.deleteLocation=async(req,res)=>{
      
   }
 };
+
