@@ -1,21 +1,28 @@
 
-
-
-
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://vermaaman714600:Aman%40600@cluster0.9o1c3rp.mongodb.net/employees/?appName=Cluster0";
-
-const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
+const uri = "mongodb+srv://vermaaman714600:Aman%40600@cluster0.9o1c3rp.mongodb.net/employees?retryWrites=true&w=majority";
+const clientOptions = {
+  serverApi: {
+    version: '1',
+    strict: true,
+    deprecationErrors: true
+  },
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+};
 
 async function connectDB() {
   try {
     await mongoose.connect(uri, clientOptions);
-    // await mongoose.connection.db.admin().command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    await mongoose.disconnect();
+    console.log("Connected to MongoDB Atlas!");
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+    process.exit(1); 
   }
 }
-connectDB().catch(console.dir);
+
+connectDB();
+
 module.exports = connectDB;
+
 
