@@ -11,7 +11,7 @@ const app = express();
 
 // Configure CORS
 app.use(cors({
-  origin: 'http://localhost:3001' // Allow requests from this origin
+  origin: 'https://amanverma036' // Allow requests from this origin
 }));
 
 app.use(express.json());
